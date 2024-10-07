@@ -6,7 +6,7 @@ from notification.models import OrderNotification
 def send_notification_for_jobs_due_that_day(sender,created,instance,**kwargs):
     #we want an order that has been created
     if created==False:
-        if instance.due_date.date() == timezone.now().date():
+        if instance.due_date == timezone.now().date():
             notification = OrderNotification.objects.create(order=instance, notified=False)
             send_mail(
                 subject=f'Notification that {notification.order.job_title} is due todau',
