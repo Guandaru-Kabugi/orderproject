@@ -7,8 +7,3 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model =User
         fields = ['id','token','username','email','first_name','last_name']
-    # def validate_username(self, value):
-        
-    #     if User.objects.filter(username=value).exists():
-    #         raise serializers.ValidationError("username already exists")
-    #     return value

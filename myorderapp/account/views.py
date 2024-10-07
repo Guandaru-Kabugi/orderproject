@@ -17,7 +17,7 @@ def register(request):
         token = Token.objects.create(user=user)
         return response.Response({"token":token.key,"user":serializer.data}, status=status.HTTP_201_CREATED)
     else:
-        return response.Response({"error":"invalid data format"}, status=status.HTTP_400_BAD_REQUEST)
+        return response.Response({"error":serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 @api_view(['POST'])
 def login(request):
     user = get_object_or_404(User,username=request.data['username'])
